@@ -22,7 +22,7 @@ namespace NetlogProject.Business.Concrete
 
             var pictureGroup = new PictureGroup()
             {
-                id = pictureGroupRequest.id,
+                //id = pictureGroupRequest.id,
                 pictureImage = pictureGroupRequest.pictureImage,
                 createDate = DateTime.UtcNow,
                 createdBy = pictureGroupRequest.createdBy

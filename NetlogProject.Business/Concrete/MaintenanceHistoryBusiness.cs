@@ -22,7 +22,7 @@ namespace NetlogProject.Business.Concrete
 
             var maintenanceHistory = new MaintenanceHistory()
             {
-                id = maintenanceHistoryRequest.id,
+                //id = maintenanceHistoryRequest.id,
                 maintenanceId = maintenanceHistoryRequest.maintenanceId,
                 actionTypeId = maintenanceHistoryRequest.actionTypeId,
                 text= maintenanceHistoryRequest.text,

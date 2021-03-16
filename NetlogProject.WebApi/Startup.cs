@@ -58,7 +58,7 @@ namespace NetlogProject.WebApi
                     Description = "Basic Authorization header using the Bearer scheme."
                 });
 
-                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                /*c.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
                     {
                           new OpenApiSecurityScheme
@@ -71,7 +71,7 @@ namespace NetlogProject.WebApi
                             },
                             new string[] {}
                     }
-                });
+                });*/
 
             });
             #endregion

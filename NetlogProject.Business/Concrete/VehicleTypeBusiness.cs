@@ -22,7 +22,7 @@ namespace NetlogProject.Business.Concrete
 
             var vehicleType = new VehicleType()
             {
-                id = vehicleTypeRequest.id,
+                //id = vehicleTypeRequest.id,
                 name = vehicleTypeRequest.name,
                 createDate = DateTime.UtcNow,
                 createdBy = vehicleTypeRequest.createdBy

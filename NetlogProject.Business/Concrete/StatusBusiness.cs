@@ -22,7 +22,7 @@ namespace NetlogProject.Business.Concrete
 
             var status = new Status()
             {
-                id = statusRequest.id,
+                //id = statusRequest.id,
                 name = statusRequest.name,
                 createDate = DateTime.UtcNow,
                 createdBy = statusRequest.createdBy

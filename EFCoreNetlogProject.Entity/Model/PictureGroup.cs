@@ -9,7 +9,7 @@ namespace EFCoreNetlogProject.Entity.Model
     public class PictureGroup : EntityMain
     {
         public int id { get; set; }
-        public string pictureImage { get; set; }
+        public string? pictureImage { get; set; }
         public IEnumerable<Maintenance> maintenances { get; set; }
     }
 }

@@ -22,7 +22,7 @@ namespace NetlogProject.Business.Concrete
 
             var actionType = new ActionType()
             {
-                id = actionTypeRequest.id,
+                //id = actionTypeRequest.id,
                 name = actionTypeRequest.name,
                 createDate = DateTime.UtcNow,
                 createdBy = actionTypeRequest.createdBy

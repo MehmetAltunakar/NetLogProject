@@ -22,7 +22,7 @@ namespace NetlogProject.Business.Concrete
 
             var vehicle = new Vehicle()
             {
-                id = vehicleRequest.id,
+                //id = vehicleRequest.id,
                 plateNo = vehicleRequest.plateNo,
                 vehicleTypeId = vehicleRequest.vehicleTypeId,
                 userId = vehicleRequest.userId,

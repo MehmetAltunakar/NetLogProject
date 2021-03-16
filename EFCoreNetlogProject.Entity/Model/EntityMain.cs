@@ -9,9 +9,9 @@ namespace NetlogProject.Entity.Model
     public class EntityMain
     {
         public int id { get; set; }
-        public DateTime createDate { get; set; }
+        public DateTime? createDate { get; set; }
         [ForeignKey(nameof(createdUser))]
-        public int createdBy { get; set; }
+        public int? createdBy { get; set; }
         public DateTime? modifyDate { get; set; }
         [ForeignKey(nameof(modifiedUser))]
         public int? modifiedBy { get; set; }

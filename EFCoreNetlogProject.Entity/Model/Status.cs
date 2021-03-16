@@ -9,7 +9,7 @@ namespace EFCoreNetlogProject.Entity.Model
     public class Status:EntityMain
     {
         public int id { get; set; }
-        public string name { get; set; }
+        public string? name { get; set; }
         public IEnumerable<Maintenance> maintenances  { get; set; }
     }
 }
