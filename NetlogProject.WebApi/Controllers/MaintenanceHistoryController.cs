@@ -36,20 +36,35 @@ namespace NetlogProject.WebApi.Controllers
                 }
                 return Ok(response);
             }
-
-            [HttpPost]
-            public IActionResult Add(MaintenanceHistoryRequest maintenanceHistoryRequest)
-            {
-                var response = new ResponseViewModel();
-                response = _maintenanceHistoryBusiness.Add(maintenanceHistoryRequest);
-
-                if (!response.IsSuccess)
+            [HttpGet("List")]
+            public IActionResult List()
                 {
-                    return BadRequest(response);
+                    var response = new ResponseViewModel();
+                    response = _maintenanceHistoryBusiness.List();
+
+                    if (!response.IsSuccess)
+                    {
+                        if (response.Data == null)
+                            return NotFound(response);
+
+                        return BadRequest(response);
+                    }
+                    return Ok(response);
                 }
 
-                return Ok(response);
-            }
+            [HttpPost]
+                public IActionResult Add(MaintenanceHistoryRequest maintenanceHistoryRequest)
+                {
+                    var response = new ResponseViewModel();
+                    response = _maintenanceHistoryBusiness.Add(maintenanceHistoryRequest);
+
+                    if (!response.IsSuccess)
+                    {
+                        return BadRequest(response);
+                    }
+
+                    return Ok(response);
+                }
 
             [HttpPut]
             public IActionResult Edit(MaintenanceHistoryRequest maintenanceHistoryRequest)

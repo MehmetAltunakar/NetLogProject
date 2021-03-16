@@ -37,6 +37,22 @@ namespace NetlogProject.WebApi.Controllers
             return Ok(response);
         }
 
+        [HttpGet("List")]
+        public IActionResult List()
+        {
+            var response = new ResponseViewModel();
+            response = _maintenanceBusiness.List();
+
+            if (!response.IsSuccess)
+            {
+                if (response.Data == null)
+                    return NotFound(response);
+
+                return BadRequest(response);
+            }
+            return Ok(response);
+        }
+
         [HttpPost]
         public IActionResult Add(MaintenanceRequest maintenanceRequest)
         {

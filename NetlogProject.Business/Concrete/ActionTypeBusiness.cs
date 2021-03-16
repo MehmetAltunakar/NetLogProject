@@ -5,6 +5,7 @@ using NetlogProject.Entity.Response;
 using NetlogProject.Repository.Abstract;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace NetlogProject.Business.Concrete
@@ -22,7 +23,7 @@ namespace NetlogProject.Business.Concrete
 
             var actionType = new ActionType()
             {
-                //id = actionTypeRequest.id,
+               
                 name = actionTypeRequest.name,
                 createDate = DateTime.UtcNow,
                 createdBy = actionTypeRequest.createdBy
@@ -67,6 +68,14 @@ namespace NetlogProject.Business.Concrete
             var response = new ResponseViewModel();
 
             response.Data = _actionTypeRepo.Get(p => p.id == id && !p.isDeleted);
+
+            return response;
+        }
+        public ResponseViewModel List()
+        {
+            var response = new ResponseViewModel();
+
+            response.Data = _actionTypeRepo.List(p => !p.isDeleted).ToList();
 
             return response;
         }

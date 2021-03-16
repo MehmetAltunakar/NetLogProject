@@ -5,6 +5,7 @@ using NetlogProject.Entity.Response;
 using NetlogProject.Repository.Abstract;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace NetlogProject.Business.Concrete
@@ -22,7 +23,7 @@ namespace NetlogProject.Business.Concrete
 
             var status = new Status()
             {
-                //id = statusRequest.id,
+               
                 name = statusRequest.name,
                 createDate = DateTime.UtcNow,
                 createdBy = statusRequest.createdBy
@@ -70,7 +71,14 @@ namespace NetlogProject.Business.Concrete
 
             return response;
         }
+        public ResponseViewModel List()
+        {
+            var response = new ResponseViewModel();
 
+            response.Data = _statusRepo.List(p => !p.isDeleted).ToList();
+
+            return response;
+        }
         public ResponseViewModel Update(StatusRequest statusRequest)
         {
             var response = new ResponseViewModel();

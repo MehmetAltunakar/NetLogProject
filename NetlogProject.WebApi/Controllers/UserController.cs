@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace NetlogProject.WebApi.Controllers
 {
-    //[Authorize]
+    
     [Route("[controller]")]
     [ApiController]
     public class UserController : ControllerBase
@@ -27,6 +27,22 @@ namespace NetlogProject.WebApi.Controllers
         {
             var response = new ResponseViewModel();
             response = _userService.Get(id);
+
+            if (!response.IsSuccess)
+            {
+                if (response.Data == null)
+                    return NotFound(response);
+
+                return BadRequest(response);
+            }
+            return Ok(response);
+        }
+        
+        [HttpGet("List")]
+        public IActionResult List()
+        {
+            var response = new ResponseViewModel();
+            response = _userService.List();
 
             if (!response.IsSuccess)
             {

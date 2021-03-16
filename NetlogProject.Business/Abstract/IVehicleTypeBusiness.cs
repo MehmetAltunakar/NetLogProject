@@ -12,5 +12,6 @@ namespace NetlogProject.Business.Abstract
         ResponseViewModel Add(VehicleTypeRequest vehicleTypeRequest);
         ResponseViewModel Update(VehicleTypeRequest vehicleTypeRequest);
         ResponseViewModel Delete(int id);
+        ResponseViewModel List();
     }
 }

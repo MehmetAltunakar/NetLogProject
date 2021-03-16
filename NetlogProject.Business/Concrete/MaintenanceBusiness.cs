@@ -5,6 +5,7 @@ using NetlogProject.Entity.Response;
 using NetlogProject.Repository.Abstract;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace NetlogProject.Business.Concrete
@@ -12,13 +13,44 @@ namespace NetlogProject.Business.Concrete
     public class MaintenanceBusiness : IMaintenanceBusiness
     {
         private readonly IMaintenanceRepo _maintenanceRepo;
-        public MaintenanceBusiness(IMaintenanceRepo maintenance)
+        private readonly IUserRepo _userRepo;
+        private readonly IPictureGroupRepo _pictureGroupRepo;
+        private readonly IVehicleRepo _vehicleRepo;
+
+        public MaintenanceBusiness(IMaintenanceRepo maintenance, IUserRepo userRepo, IPictureGroupRepo pictureGroupRepo, IVehicleRepo vehicleRepo)
         {
             _maintenanceRepo = maintenance;
-        }
+            _userRepo = userRepo;
+            _pictureGroupRepo = pictureGroupRepo;
+            _vehicleRepo = vehicleRepo;
+    }
         public ResponseViewModel Add(MaintenanceRequest maintenanceRequest)
         {
             var response = new ResponseViewModel();
+            var createdUser = _userRepo.Get(x => x.id == maintenanceRequest.createdBy && !x.isDeleted);
+
+            if (createdUser == null)
+            {
+                response.IsSuccess = false;
+                response.Message = "CreatedBy bulunamadı";
+                return response;
+            }
+            var pictureGroupId = _pictureGroupRepo.Get(x => x.id == maintenanceRequest.pictureGroupId && !x.isDeleted);
+
+            if (pictureGroupId == null)
+            {
+                response.IsSuccess = false;
+                response.Message = "Picture bulunamadı";
+                return response;
+            }
+            var vehicleId = _vehicleRepo.Get(x => x.id == maintenanceRequest.vehicleId && !x.isDeleted);
+
+            if (vehicleId == null)
+            {
+                response.IsSuccess = false;
+                response.Message = "VehicleId bulunamadı";
+                return response;
+            }
 
             var maintenance = new Maintenance()
             {
@@ -77,13 +109,22 @@ namespace NetlogProject.Business.Concrete
             return response;
         }
 
+        public ResponseViewModel List()
+        {
+            var response = new ResponseViewModel();
+
+            response.Data = _maintenanceRepo.List(p=>!p.isDeleted).ToList();
+
+            return response;
+        }
+
         public ResponseViewModel Update(MaintenanceRequest maintenanceRequest)
         {
             var response = new ResponseViewModel();
             
             var maintenance = new Maintenance()
             {
-                id = maintenanceRequest.id,
+               
                 vehicleId = maintenanceRequest.vehicleId,
                 userId = maintenanceRequest.userId,
                 description = maintenanceRequest.description,

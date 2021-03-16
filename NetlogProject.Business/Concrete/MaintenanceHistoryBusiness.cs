@@ -5,6 +5,7 @@ using NetlogProject.Entity.Response;
 using NetlogProject.Repository.Abstract;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace NetlogProject.Business.Concrete
@@ -22,7 +23,7 @@ namespace NetlogProject.Business.Concrete
 
             var maintenanceHistory = new MaintenanceHistory()
             {
-                //id = maintenanceHistoryRequest.id,
+                
                 maintenanceId = maintenanceHistoryRequest.maintenanceId,
                 actionTypeId = maintenanceHistoryRequest.actionTypeId,
                 text= maintenanceHistoryRequest.text,
@@ -69,6 +70,14 @@ namespace NetlogProject.Business.Concrete
             var response = new ResponseViewModel();
 
             response.Data = _maintenanceHistoryRepo.Get(p => p.id == id && !p.isDeleted);
+
+            return response;
+        }
+        public ResponseViewModel List()
+        {
+            var response = new ResponseViewModel();
+
+            response.Data = _maintenanceHistoryRepo.List(p => !p.isDeleted).ToList();
 
             return response;
         }

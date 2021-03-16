@@ -12,5 +12,6 @@ namespace NetlogProject.Business.Abstract
         ResponseViewModel Add(PictureGroupRequest pictureGroupRequest);
         ResponseViewModel Update(PictureGroupRequest pictureGroupRequest);
         ResponseViewModel Delete(int id);
+        ResponseViewModel List();
     }
 }

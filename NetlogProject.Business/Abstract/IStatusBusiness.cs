@@ -12,5 +12,6 @@ namespace NetlogProject.Business.Abstract
         ResponseViewModel Add(StatusRequest statusRequest);
         ResponseViewModel Update(StatusRequest statusRequest);
         ResponseViewModel Delete(int id);
+        ResponseViewModel List();
     }
 }

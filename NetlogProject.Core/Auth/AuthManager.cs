@@ -10,7 +10,7 @@ namespace NetlogProject.Core.Auth
     public class AuthManager : IAuthService
     {
         List<Identity> _identities = new List<Identity>{
-            new Identity{Id=1,FirstName="Test",LastName="User",UserName="test",Password="test"}
+            new Identity{Id=1,FirstName="Admin",LastName="Admin",UserName="admin",Password="admin"}
         };
 
         public async Task<Identity> Authenticate(string userName, string password)

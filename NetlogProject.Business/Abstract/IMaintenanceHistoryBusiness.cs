@@ -12,5 +12,6 @@ namespace NetlogProject.Business.Abstract
         ResponseViewModel Add(MaintenanceHistoryRequest maintenanceHistoryRequest);
         ResponseViewModel Update(MaintenanceHistoryRequest maintenanceHistoryRequest);
         ResponseViewModel Delete(int id);
+        ResponseViewModel List();
     }
 }

@@ -58,7 +58,7 @@ namespace NetlogProject.WebApi
                     Description = "Basic Authorization header using the Bearer scheme."
                 });
 
-                /*c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
                     {
                           new OpenApiSecurityScheme
@@ -71,10 +71,14 @@ namespace NetlogProject.WebApi
                             },
                             new string[] {}
                     }
-                });*/
+                });
 
             });
             #endregion
+
+            services.AddControllers().AddNewtonsoftJson(options =>
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+);
 
             services.AddTransient<IUserRepo, UserRepo>();
             services.AddTransient<IUserBusiness, UserBusiness>();

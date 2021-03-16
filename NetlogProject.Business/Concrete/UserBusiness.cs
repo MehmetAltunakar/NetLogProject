@@ -5,6 +5,7 @@ using NetlogProject.Entity.Response;
 using NetlogProject.Repository.Abstract;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace NetlogProject.Business.Concrete
@@ -69,6 +70,14 @@ namespace NetlogProject.Business.Concrete
             var response = new ResponseViewModel();
 
             response.Data = _userRepo.Get(p => p.id == id && !p.isDeleted);
+
+            return response;
+        }
+        public ResponseViewModel List()
+        {
+            var response = new ResponseViewModel();
+
+            response.Data = _userRepo.List(p => !p.isDeleted).ToList();
 
             return response;
         }

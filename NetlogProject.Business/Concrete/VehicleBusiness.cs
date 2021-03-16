@@ -5,6 +5,7 @@ using NetlogProject.Entity.Response;
 using NetlogProject.Repository.Abstract;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace NetlogProject.Business.Concrete
@@ -22,7 +23,7 @@ namespace NetlogProject.Business.Concrete
 
             var vehicle = new Vehicle()
             {
-                //id = vehicleRequest.id,
+                
                 plateNo = vehicleRequest.plateNo,
                 vehicleTypeId = vehicleRequest.vehicleTypeId,
                 userId = vehicleRequest.userId,
@@ -69,6 +70,14 @@ namespace NetlogProject.Business.Concrete
             var response = new ResponseViewModel();
 
             response.Data = _vehicleRepo.Get(p => p.id == id && !p.isDeleted);
+
+            return response;
+        }
+        public ResponseViewModel List()
+        {
+            var response = new ResponseViewModel();
+
+            response.Data = _vehicleRepo.List(p => !p.isDeleted).ToList();
 
             return response;
         }
